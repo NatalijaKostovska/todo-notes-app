@@ -1,0 +1,20 @@
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 15px;
+}
+
+.dashboard {
+    flex-direction: column;
+}
+
+.button {
+    text-align: center;
+}
+
+.cards {
+    flex-flow: wrap;
+    justify-content: flex-start;
+    justify-content: center;
+}
