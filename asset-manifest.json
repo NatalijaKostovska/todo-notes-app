@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/todo-notes-app/static/css/main.8c11108e.css",
+    "main.js": "/todo-notes-app/static/js/main.973b2895.js",
+    "static/js/787.28cb0dcd.chunk.js": "/todo-notes-app/static/js/787.28cb0dcd.chunk.js",
+    "static/media/empty.png": "/todo-notes-app/static/media/empty.263729f5d7b4544a9c33.png",
+    "index.html": "/todo-notes-app/index.html",
+    "main.8c11108e.css.map": "/todo-notes-app/static/css/main.8c11108e.css.map",
+    "main.973b2895.js.map": "/todo-notes-app/static/js/main.973b2895.js.map",
+    "787.28cb0dcd.chunk.js.map": "/todo-notes-app/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c11108e.css",
+    "static/js/main.973b2895.js"
+  ]
+}
