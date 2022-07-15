@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './styles.css';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function Card({ item }) {
+function Card({ item, handleRemove }) {
 
     let date = new Date().toDateString()
     return (
@@ -13,7 +15,9 @@ function Card({ item }) {
                 <form className='form'>
                     <textarea placeholder='write your to do list here' defaultValue={item.text} />
                 </form>
-                <Button>Delete</Button>
+                <IconButton aria-label="delete" onClick={handleRemove} sx={{ padding: '0px !important', display: 'flex', marginLeft: 'auto' }}>
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
             </div>
         </div>
     )

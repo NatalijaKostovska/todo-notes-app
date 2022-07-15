@@ -4,7 +4,7 @@ import './styles.css';
 import Header from '../components/Header/Header';
 import { Button, Input } from '@mui/material';
 import SimpleDialog from '../components/SimpleDialog/SimpleDialog';
-
+import empty from './../images/empty.png'
 function Dashboard() {
 
     const [open, setOpen] = React.useState(false);
@@ -14,15 +14,15 @@ function Dashboard() {
     let cards = [
         {
             id: '1',
-            text: 'test1'
+            text: 'Shopping'
         },
         {
             id: '2',
-            text: 'test2'
+            text: 'Fitness'
         },
         {
             id: '3',
-            text: 'test3'
+            text: 'Visit my grandmother'
         }
     ];
 
@@ -50,14 +50,18 @@ function Dashboard() {
             <Header />
             <div className='cards'>
                 {
-                    arrayOfCards?.map((item) =>
-                        <div key={item.key}>
-                            <Card item={item} handleRemove={() => handleRemove(item)} />
-                        </div>
-                    )
+                    arrayOfCards.length === 0 ?
+                        <img src={empty} /> :
+                        arrayOfCards?.map((item) =>
+                            <div key={item.key}>
+                                <Card item={item} handleRemove={() => handleRemove(item)} />
+                            </div>
+                        )
                 }
             </div>
-            <Button onClick={handleClickOpen}> Add Note </Button>
+            <div className='button'>
+                <Button onClick={handleClickOpen} variant="contained" > Add Note </Button>
+            </div>
             <SimpleDialog
                 open={open}
                 onClose={handleClose}
