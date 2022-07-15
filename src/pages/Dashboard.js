@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Card from '../components/Card/Card';
 import './styles.css';
 import Header from '../components/Header/Header';
-import { Button, Input } from '@mui/material';
+import { Button, Input, TextareaAutosize } from '@mui/material';
 import SimpleDialog from '../components/SimpleDialog/SimpleDialog';
 import empty from './../images/empty.png'
 function Dashboard() {
@@ -65,18 +65,18 @@ function Dashboard() {
             <SimpleDialog
                 open={open}
                 onClose={handleClose}
-                title={'Add new note'}
+                title={'Today\'s to-do list'}
             >
                 <div className="card">
                     <div className="container">
                         <form className='form'>
-                            <Input onChange={(e) => setValue(e.target.value)} />
+                            <TextareaAutosize minRows={5} maxRows={5} onChange={(e) => setValue(e.target.value)} />
                         </form>
                     </div>
                     <Button onClick={() => handleSave()}>Save</Button>
                 </div>
             </SimpleDialog>
-        </div>
+        </div >
 
     )
 }
