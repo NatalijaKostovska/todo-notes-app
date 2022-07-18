@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/todo-notes-app/static/css/main.b458ec3c.css",
-    "main.js": "/todo-notes-app/static/js/main.5f3d523b.js",
+    "main.css": "/todo-notes-app/static/css/main.a64878c0.css",
+    "main.js": "/todo-notes-app/static/js/main.6dddce4a.js",
     "static/js/787.28cb0dcd.chunk.js": "/todo-notes-app/static/js/787.28cb0dcd.chunk.js",
     "static/media/empty.png": "/todo-notes-app/static/media/empty.263729f5d7b4544a9c33.png",
     "index.html": "/todo-notes-app/index.html",
-    "main.b458ec3c.css.map": "/todo-notes-app/static/css/main.b458ec3c.css.map",
-    "main.5f3d523b.js.map": "/todo-notes-app/static/js/main.5f3d523b.js.map",
+    "main.a64878c0.css.map": "/todo-notes-app/static/css/main.a64878c0.css.map",
+    "main.6dddce4a.js.map": "/todo-notes-app/static/js/main.6dddce4a.js.map",
     "787.28cb0dcd.chunk.js.map": "/todo-notes-app/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b458ec3c.css",
-    "static/js/main.5f3d523b.js"
+    "static/css/main.a64878c0.css",
+    "static/js/main.6dddce4a.js"
   ]
 }
