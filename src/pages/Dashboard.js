@@ -109,19 +109,22 @@ function Dashboard() {
                     <Button onClick={() => handleSave()}>Save</Button>
                 </div>
             </SimpleDialog>
-            DONE
-            <div className='cards'>
-                {
-                    arrayOfCards.filter(item => {
-                        return item.status === 'Done'
-                    })
-                        .map((item) =>
-                            <div key={item.key}>
-                                <Card item={item} handleRemove={() => handleRemove(item)} handleStatus={() => handleStatus(item)} />
-                            </div>
-                        )
-                }
-            </div>
+<<<<<<< HEAD
+    DONE
+        < div className = 'cards' >
+        {
+            arrayOfCards.filter(item => {
+                return item.status === 'Done'
+            })
+                .map((item) =>
+                    <div key={item.key}>
+                        <Card item={item} handleRemove={() => handleRemove(item)} handleStatus={() => handleStatus(item)} />
+                    </div>
+                )
+        }
+            </div >
+=======
+>>>>>>> a55a5ce6ad2176311df44e230f6f8827e592e587
         </div >
 
     )
