@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/Card/Card';
 import './styles.css';
 import Header from '../components/Header/Header';
-import { Button, Input, TextareaAutosize } from '@mui/material';
+import { Button, TextareaAutosize } from '@mui/material';
 import SimpleDialog from '../components/SimpleDialog/SimpleDialog';
 import empty from './../images/empty.png'
 function Dashboard() {
@@ -14,15 +14,18 @@ function Dashboard() {
     let cards = [
         {
             id: '1',
-            text: 'Shopping'
+            text: 'Shopping',
+            status: 'Undone'
         },
         {
             id: '2',
-            text: 'Fitness'
+            text: 'Fitness',
+            status: 'Undone'
         },
         {
             id: '3',
-            text: 'Visit my grandmother'
+            text: 'Visit my grandmother',
+            status: 'Done'
         }
     ];
 
@@ -37,26 +40,56 @@ function Dashboard() {
     };
 
     const handleSave = () => {
-        setArrayOfCards(cards => [...cards, { id: randomId, text: value }])
+        setArrayOfCards(cards => [...cards, { id: randomId, text: value, status: 'Undone' }])
     };
 
     const handleRemove = (item) => {
-        console.log('rtger', item)
-        setArrayOfCards(cards => cards.filter(card => { return card.id !== item.id }))
+        setArrayOfCards(arrayOfCards => arrayOfCards.filter(card => { return card.id !== item.id }));
+    }
+
+
+    const handleStatus = (item) => {
+        //find item with the id and set status Undone
+        if (item.status === 'Done') {
+            setArrayOfCards(current => current.map(i => {
+                if (i.id === item.id) {
+                    return { ...i, status: 'Undone' }
+                }
+                return i;
+            }))
+        }
+        //find item with the id and set status Done
+        else {
+            setArrayOfCards(current => current.map(i => {
+                if (i.id === item.id) {
+                    return { ...i, status: 'Done' }
+                }
+                return i;
+            }))
+        }
 
     }
+
     return (
         <div className='dashboard'>
             <Header />
+            IN PROGRESS
             <div className='cards'>
                 {
-                    arrayOfCards.length === 0 ?
+                    arrayOfCards?.length === 0 ?
                         <img src={empty} /> :
-                        arrayOfCards?.map((item) =>
-                            <div key={item.key}>
-                                <Card item={item} handleRemove={() => handleRemove(item)} />
-                            </div>
-                        )
+                        arrayOfCards.filter(item => {
+                            return item.status === 'Undone'
+                        })
+                            .map((item) =>
+                                <div key={item.key}>
+                                    <Card item={item}
+                                        handleRemove={() => handleRemove(item)}
+                                        handleStatus={() => handleStatus(item)} />
+                                </div>
+                            )
+
+
                 }
             </div>
             <div className='button'>
@@ -76,9 +109,34 @@ function Dashboard() {
                     <Button onClick={() => handleSave()}>Save</Button>
                 </div>
             </SimpleDialog>
+            DONE
+            <div className='cards'>
+                {
+                    arrayOfCards.filter(item => {
+                        return item.status === 'Done'
+                    })
+                        .map((item) =>
+                            <div key={item.key}>
+                                <Card item={item} handleRemove={() => handleRemove(item)} handleStatus={() => handleStatus(item)} />
+                            </div>
+                        )
+                }
+            </div>
         </div >
 
     )
 }
 
 export default Dashboard;
+
+
+{/* {return arrayOfCards?.filter((item => item.status === 'Done')} */ }
+
+                    //         < div key={
+                    //     doneNotes.key
+                    // } >
+                    // <Card
+                    //     item={doneNotes}
+                    //     handleRemove={() => handleRemove(doneNotes)}
+                    // />
+                    //     </div>

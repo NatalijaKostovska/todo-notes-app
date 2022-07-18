@@ -23,3 +23,8 @@ textarea {
     font-size: 16px;
     resize: none;
 }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
