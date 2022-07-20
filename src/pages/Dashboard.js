@@ -87,7 +87,7 @@ function Dashboard() {
                             return item.status === 'Undone'
                         })
                             .map((item) =>
-                                <div key={item.key}>
+                                <div key={item.id}>
                                     <Card
                                         item={item}
                                         handleRemove={() => handleRemove(item)}
@@ -132,7 +132,8 @@ function Dashboard() {
                         return item.status === 'Done'
                     })
                         .map((item) =>
-                            <div key={item.key}>
+                            <div key={item.id}>
+                                {console.log(item, arrayOfCards)}
                                 <Card
                                     item={item}
                                     handleRemove={() => handleRemove(item)}
