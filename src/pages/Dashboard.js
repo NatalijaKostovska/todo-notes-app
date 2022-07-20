@@ -4,7 +4,8 @@ import './styles.css';
 import Header from '../components/Header/Header';
 import { Button, TextareaAutosize } from '@mui/material';
 import SimpleDialog from '../components/SimpleDialog/SimpleDialog';
-import empty from './../images/empty.png'
+import empty from './../images/empty.png';
+
 function Dashboard() {
 
     const [open, setOpen] = React.useState(false);
@@ -43,11 +44,6 @@ function Dashboard() {
         setArrayOfCards(cards => [...cards, { id: randomId, text: value, status: 'Undone' }])
     };
 
-    const handleRemove = (item) => {
-        setArrayOfCards(arrayOfCards => arrayOfCards.filter(card => { return card.id !== item.id }));
-    }
-
-
     const handleStatus = (item) => {
         //find item with the id and set status Undone
         if (item.status === 'Done') {
@@ -64,12 +60,20 @@ function Dashboard() {
                 if (i.id === item.id) {
                     return { ...i, status: 'Done' }
                 }
+
                 return i;
             }))
         }
-
     }
 
+    const handleOnTextboxChange = (newCard) => {
+        let arrOfCards = arrayOfCards.filter(card => card.id !== newCard.id)
+        arrOfCards.push(newCard);
+        setArrayOfCards(arrOfCards);
+    }
+    const handleRemove = (item) => {
+        setArrayOfCards(arrayOfCards => arrayOfCards.filter(card => { return card.id !== item.id }));
+    }
     return (
         <div className='dashboard'>
             <Header />
@@ -83,17 +87,21 @@ function Dashboard() {
                         })
                             .map((item) =>
                                 <div key={item.key}>
-                                    <Card item={item}
+                                    <Card
+                                        item={item}
                                         handleRemove={() => handleRemove(item)}
-                                        handleStatus={() => handleStatus(item)} />
+                                        handleStatus={() => handleStatus(item)}
+                                        handleOnTextboxChange={handleOnTextboxChange}
+                                    />
                                 </div>
                             )
-
-
                 }
             </div>
             <div className='button'>
-                <Button onClick={handleClickOpen} variant="contained" > Add Note </Button>
+                <Button
+                    onClick={handleClickOpen}
+                    variant="contained" >
+                    Add Note </Button>
             </div>
             <SimpleDialog
                 open={open}
@@ -103,43 +111,39 @@ function Dashboard() {
                 <div className="card">
                     <div className="container">
                         <form className='form'>
-                            <TextareaAutosize minRows={5} maxRows={5} onChange={(e) => setValue(e.target.value)} />
+                            <TextareaAutosize
+                                minRows={5}
+                                maxRows={5}
+                                onChange={(e) => setValue(e.target.value)}
+                            />
                         </form>
                     </div>
-                    <Button onClick={() => handleSave()}>Save</Button>
+                    <Button
+                        onClick={() => handleSave()}>
+                        Save
+                    </Button>
                 </div>
             </SimpleDialog>
-<<<<<<< HEAD
-    DONE
-        < div className = 'cards' >
-        {
-            arrayOfCards.filter(item => {
-                return item.status === 'Done'
-            })
-                .map((item) =>
-                    <div key={item.key}>
-                        <Card item={item} handleRemove={() => handleRemove(item)} handleStatus={() => handleStatus(item)} />
-                    </div>
-                )
-        }
-            </div >
-=======
->>>>>>> a55a5ce6ad2176311df44e230f6f8827e592e587
-        </div >
-
+            DONE
+            < div className='cards' >
+                {
+                    arrayOfCards.filter(item => {
+                        return item.status === 'Done'
+                    })
+                        .map((item) =>
+                            <div key={item.key}>
+                                <Card
+                                    item={item}
+                                    handleRemove={() => handleRemove(item)}
+                                    handleStatus={() => handleStatus(item)}
+                                    handleOnTextboxChange={handleOnTextboxChange}
+                                />
+                            </div>
+                        )
+                }
+            </div>
+        </div>
     )
 }
 
 export default Dashboard;
-
-
-{/* {return arrayOfCards?.filter((item => item.status === 'Done')} */ }
-
-                    //         < div key={
-                    //     doneNotes.key
-                    // } >
-                    // <Card
-                    //     item={doneNotes}
-                    //     handleRemove={() => handleRemove(doneNotes)}
-                    // />
-                    //     </div>
