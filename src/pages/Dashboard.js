@@ -5,26 +5,27 @@ import Header from '../components/Header/Header';
 import { Button, TextareaAutosize } from '@mui/material';
 import SimpleDialog from '../components/SimpleDialog/SimpleDialog';
 import empty from './../images/empty.png';
+import { v4 as uuidv4 } from 'uuid';
 
 function Dashboard() {
 
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = useState('');
-    let randomId = Math.random().toString(36).substring(0, 5);
+    let randomId = uuidv4();
 
     let cards = [
         {
-            id: '1',
+            id: uuidv4(),
             text: 'Shopping',
             status: 'Undone'
         },
         {
-            id: '2',
+            id: uuidv4(),
             text: 'Fitness',
             status: 'Undone'
         },
         {
-            id: '3',
+            id: uuidv4(),
             text: 'Visit my grandmother',
             status: 'Done'
         }
