@@ -4,4 +4,20 @@
     background: #1abc9c;
     color: white;
     font-size: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 50px
 }
+
+.header-clock {
+    background-color: #b98c77;
+    width: 30%;
+
+}
+
+.clock-box {
+    background-color: #db8a64;
+}
+
+.clock-day-month {}
