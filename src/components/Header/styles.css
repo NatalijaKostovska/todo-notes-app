@@ -5,19 +5,17 @@
     color: white;
     font-size: 30px;
     display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 50px
+    justify-content: space-between;
 }
 
 .header-clock {
-    background-color: #b98c77;
+    background-color: #090b1d;
     width: 30%;
+    border-radius: 30px;
 
 }
 
 .clock-box {
-    background-color: #db8a64;
+    background-color: #090b1d;
+    border-radius: 2px;
 }
-
-.clock-day-month {}
