@@ -11,23 +11,25 @@ function Dashboard() {
 
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = useState('');
-    let randomId = uuidv4();
 
     let cards = [
         {
             id: uuidv4(),
             text: 'Shopping',
-            status: 'Undone'
+            status: 'Undone',
+            sortNumber: 1
         },
         {
             id: uuidv4(),
             text: 'Fitness',
-            status: 'Undone'
+            status: 'Undone',
+            sortNumber: 2
         },
         {
             id: uuidv4(),
             text: 'Visit my grandmother',
-            status: 'Done'
+            status: 'Done',
+            sortNumber: 3
         }
     ];
 
@@ -42,7 +44,8 @@ function Dashboard() {
     };
 
     const handleSave = () => {
-        setArrayOfCards(cards => [...cards, { id: randomId, text: value, status: 'Undone' }])
+        setArrayOfCards(cards => [...cards, { id: uuidv4(), text: value, status: 'Undone', sortNumber: cards.length + 1 }]);
+        setOpen(false);
     };
 
     const handleStatus = (item) => {
@@ -70,15 +73,27 @@ function Dashboard() {
     const handleOnTextboxChange = (newCard) => {
         let arrOfCards = arrayOfCards.filter(card => card.id !== newCard.id)
         arrOfCards.push(newCard);
-        setArrayOfCards(arrOfCards);
+        let arr = arrOfCards.sort((a, b) => a.sortNumber - b.sortNumber);
+        setArrayOfCards(arr);
     }
+
     const handleRemove = (item) => {
         setArrayOfCards(arrayOfCards => arrayOfCards.filter(card => { return card.id !== item.id }));
     }
+
+    let doneTasks = arrayOfCards.filter(item => {
+        return item.status === 'Done'
+    })
+
+
+    let unDoneTasks = arrayOfCards.filter(item => {
+        return item.status === 'Undone'
+    })
     return (
         <div className='dashboard'>
             <Header />
-            IN PROGRESS
+            <span className='main-text'>IN PROGRESS {unDoneTasks.length === 0 ? 'You completed the tasks.' :
+                unDoneTasks.length + '/' + arrayOfCards.length}</span>
             <div className='cards'>
                 {
                     arrayOfCards?.length === 0 ?
@@ -101,15 +116,18 @@ function Dashboard() {
             <div className='button'>
                 <Button
                     onClick={handleClickOpen}
-                    variant="contained" >
-                    Add Note </Button>
+                    variant="contained"
+                    sx={{ borderRadius: '50px', backgroundColor: '#1abc9c' }}
+                >
+                    Add Note
+                </Button>
             </div>
             <SimpleDialog
                 open={open}
                 onClose={handleClose}
                 title={'Today\'s to-do list'}
             >
-                <div className="card">
+                <div className="popup-card">
                     <div className="container">
                         <form className='form'>
                             <TextareaAutosize
@@ -125,7 +143,8 @@ function Dashboard() {
                     </Button>
                 </div>
             </SimpleDialog>
-            DONE
+            <span className='main-text'>
+                DONE {doneTasks.length + '/' + arrayOfCards.length} </span>
             < div className='cards' >
                 {
                     arrayOfCards.filter(item => {
@@ -133,7 +152,6 @@ function Dashboard() {
                     })
                         .map((item) =>
                             <div key={item.id}>
-                                {console.log(item, arrayOfCards)}
                                 <Card
                                     item={item}
                                     handleRemove={() => handleRemove(item)}
