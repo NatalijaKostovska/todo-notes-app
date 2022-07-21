@@ -26,7 +26,7 @@ function Card({
             <div className="card" onClick={() => setOpen(true)}>
                 <div className="container">
                     <div className='card-header'>
-                        <span>
+                        <span className='date'>
                             {date}
                         </span>
                         <span onClick={() => handleStatus(item)}>
